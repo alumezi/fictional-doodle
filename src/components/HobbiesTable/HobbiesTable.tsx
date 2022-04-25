@@ -23,42 +23,50 @@ export function Hobbiestable({
     }
 
     return (
-        <div className={styles.hobbiesTable}>
-            <div>
-                <select
-                    value={passion}
-                    onChange={(e) => setPassionLevel(e.target.value)}
-                >
-                    {passionLevels.map((item: Passion) => (
-                        <option value={item.value} key={item.value}>
-                            {item.name}
-                        </option>
-                    ))}
-                </select>
-                <input
-                    className={styles.input}
-                    aria-label="Enter user hobby"
-                    value={hobby}
-                    onChange={(e) => setHobby(e.target.value)}
-                />
-                <input
-                    className={styles.input}
-                    aria-label="Enter year"
-                    value={year}
-                    onChange={(e) => setYear(e.target.value)}
-                />
-                <button onClick={handleAddHobby}>Add</button>
-            </div>
-            <div>
-                {hobbies.map((hobby) => (
-                    <div key={hobby.id}>
-                        <div>Passion: {hobby.passion}</div>
-                        <div>{hobby.hobby}</div>
-                        <div>Since: {hobby.year}</div>
-                        <button></button>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <table className={styles.hobbiesTable}>
+            <tr>
+                <td>
+                    <select
+                        value={passion}
+                        onChange={(e) => setPassionLevel(e.target.value)}
+                    >
+                        {passionLevels.map((item: Passion) => (
+                            <option value={item.value} key={item.value}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </td>
+                <td>
+                    <input
+                        className={styles.input}
+                        aria-label="Enter user hobby"
+                        value={hobby}
+                        onChange={(e) => setHobby(e.target.value)}
+                    />
+                </td>
+                <td>
+                    <input
+                        className={styles.input}
+                        aria-label="Enter year"
+                        value={year}
+                        onChange={(e) => setYear(e.target.value)}
+                    />
+                </td>
+                <td>
+                    <button onClick={handleAddHobby}>Add</button>
+                </td>
+            </tr>
+            {hobbies.map((hobby) => (
+                <tr key={hobby.id} className={styles.oneHobby}>
+                    <td>Passion: {hobby.passion}</td>
+                    <td>{hobby.hobby}</td>
+                    <td>Since: {hobby.year}</td>
+                    <td>
+                        <button onClick={() => {}}>❌</button>
+                    </td>
+                </tr>
+            ))}
+        </table>
     )
 }

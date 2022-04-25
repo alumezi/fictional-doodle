@@ -61,10 +61,6 @@ export const userSlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(addNewUser.fulfilled, (state, action) => {
-                console.log(
-                    '🚀 ~ file: HobbiesSlice.ts ~ line 64 ~ .addCase ~ action',
-                    action
-                )
                 state.status = 'idle'
                 state.users = action.payload
             })
