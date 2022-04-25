@@ -33,6 +33,30 @@ export function Hobbies({
         setSelectedUser(userID)
     }
 
+    const handleAddHobby = (hobby: Hobby) => {
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm(`Would you like to add hobby: ${hobby.hobby}?`)) {
+            dispatch(
+                addHobbyThunk({
+                    userID: selectedUser,
+                    hobby,
+                })
+            )
+        }
+    }
+
+    const handleDeleteHobby = (hobbyID: string) => {
+        // eslint-disable-next-line no-restricted-globals
+        if (confirm('Are you sure you want to delete this hobby?')) {
+            dispatch(
+                deleteHobbyThunk({
+                    userID: selectedUser,
+                    hobbyID,
+                })
+            )
+        }
+    }
+
     return (
         <div className={styles.hobbiesTable}>
             <header className={styles.header}>
@@ -52,22 +76,8 @@ export function Hobbies({
                     {selectedUser && (
                         <Hobbiestable
                             hobbies={hobbyState.hobbies}
-                            addHobby={(hobby: Hobby) =>
-                                dispatch(
-                                    addHobbyThunk({
-                                        userID: selectedUser,
-                                        hobby,
-                                    })
-                                )
-                            }
-                            deleteHobby={(hobbyID: string) =>
-                                dispatch(
-                                    deleteHobbyThunk({
-                                        userID: selectedUser,
-                                        hobbyID,
-                                    })
-                                )
-                            }
+                            addHobby={handleAddHobby}
+                            deleteHobby={handleDeleteHobby}
                             passionLevels={[
                                 { value: 'low', name: 'Low' },
                                 { value: 'medium', name: 'Medium' },

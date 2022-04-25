@@ -40,6 +40,7 @@ export function addUserAPI(userName: string) {
 export function addHobbyAPI(userID: string, hobby: Hobby) {
     return new Promise<{ data: Hobby[] }>((resolve) =>
         setTimeout(() => {
+            hobby.id = Math.random().toString()
             mockHobbies = {
                 ...mockHobbies,
                 [userID]: [...mockHobbies[userID], hobby],
