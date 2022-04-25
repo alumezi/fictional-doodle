@@ -14,4 +14,8 @@ describe('<Usertable /> rendering', () => {
     it('renders correctly', () => {
         expect(wrapper).toMatchSnapshot()
     })
+
+    it('renders users', () => {
+        expect(wrapper.find('.user').text()).toEqual('Arbnor Lumezi')
+    })
 })

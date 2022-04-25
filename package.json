@@ -12,7 +12,7 @@
         "@types/react": "^16.14.25",
         "@types/react-redux": "^7.1.24",
         "node-sass": "^7.0.1",
-        "react": "^17.0.0",
+        "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-redux": "^7.2.8",
         "react-scripts": "5.0.1",
@@ -43,10 +43,8 @@
         "@types/enzyme": "^3.10.12",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/react-dom": "^18.0.2",
-        "@types/redux-mock-store": "^1.0.3",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.6",
-        "prettier": "2.6.2",
-        "redux-mock-store": "^1.5.4"
+        "prettier": "2.6.2"
     }
 }

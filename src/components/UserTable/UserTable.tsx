@@ -35,7 +35,11 @@ export function Usertable({
             </div>
             <div>
                 {users.map((user) => (
-                    <div key={user.id} onClick={() => onSelect(user.id)}>
+                    <div
+                        className="user"
+                        key={user.id}
+                        onClick={() => onSelect(user.id)}
+                    >
                         {user.name}
                     </div>
                 ))}
