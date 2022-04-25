@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { Hobby, User } from '../../interfaces'
-import { addUserApi, fetchAllUsers, fetchUserHobbies } from '../../services/api'
+import {
+    addHobbyAPI,
+    addUserAPI,
+    fetchAllUsers,
+    fetchUserHobbies,
+} from '../../services/api'
 
 export interface UserState {
     users: User[]
@@ -31,7 +36,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 export const addNewUser = createAsyncThunk(
     'users/addNewUser',
     async (userName: string) => {
-        const response = await addUserApi(userName)
+        const response = await addUserAPI(userName)
         return response.data
     }
 )
@@ -40,6 +45,14 @@ export const fetchHobbies = createAsyncThunk(
     'hobbies/fetchHobbies',
     async (userID: string) => {
         const response = await fetchUserHobbies(userID)
+        return response.data
+    }
+)
+
+export const addHobbyThunk = createAsyncThunk(
+    'hobbies/addHobby',
+    async ({ userID, hobby }: { userID: string; hobby: Hobby }) => {
+        const response = await addHobbyAPI(userID, hobby)
         return response.data
     }
 )
@@ -77,6 +90,13 @@ export const hobbySlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(fetchHobbies.fulfilled, (state, action) => {
+                state.status = 'idle'
+                state.hobbies = action.payload
+            })
+            .addCase(addHobbyThunk.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(addHobbyThunk.fulfilled, (state, action) => {
                 state.status = 'idle'
                 state.hobbies = action.payload
             })

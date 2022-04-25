@@ -7,9 +7,11 @@ import {
     selectUsers,
     fetchHobbies,
     addNewUser,
+    addHobbyThunk,
 } from './hobbiesSlice'
 import styles from './Hobbies.module.scss'
 import { Usertable } from '../../components/UserTable/UserTable'
+import { Hobby } from '../../interfaces'
 
 export function Hobbies({
     title,
@@ -19,6 +21,7 @@ export function Hobbies({
     const users = useAppSelector(selectUsers)
     const hobbyState = useAppSelector(selectHobbies)
     const dispatch = useAppDispatch()
+    const [selectedUser, setSelectedUser] = useState('')
 
     useEffect(() => {
         dispatch(fetchUsers())
@@ -26,6 +29,7 @@ export function Hobbies({
 
     const handleSelect = (userID: string) => {
         dispatch(fetchHobbies(userID))
+        setSelectedUser(userID)
     }
 
     return (
@@ -44,16 +48,25 @@ export function Hobbies({
                     />
                 </div>
                 <div className={styles.rightComponent}>
-                    <Hobbiestable
-                        hobbies={hobbyState.hobbies}
-                        addHobby={() => {}}
-                        passionLevels={[
-                            { value: 'low', name: 'Low' },
-                            { value: 'medium', name: 'Medium' },
-                            { value: 'high', name: 'High' },
-                            { value: 'very-high', name: 'Very-High' },
-                        ]}
-                    />
+                    {selectedUser && (
+                        <Hobbiestable
+                            hobbies={hobbyState.hobbies}
+                            addHobby={(hobby: Hobby) =>
+                                dispatch(
+                                    addHobbyThunk({
+                                        userID: selectedUser,
+                                        hobby,
+                                    })
+                                )
+                            }
+                            passionLevels={[
+                                { value: 'low', name: 'Low' },
+                                { value: 'medium', name: 'Medium' },
+                                { value: 'high', name: 'High' },
+                                { value: 'very-high', name: 'Very-High' },
+                            ]}
+                        />
+                    )}
                 </div>
             </div>
         </div>

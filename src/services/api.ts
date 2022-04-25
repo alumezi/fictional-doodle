@@ -24,7 +24,7 @@ export function fetchAllUsers() {
     )
 }
 
-export function addUserApi(userName: string) {
+export function addUserAPI(userName: string) {
     return new Promise<{ data: User[] }>((resolve) =>
         setTimeout(() => {
             const newID = Math.random().toString()
@@ -32,6 +32,20 @@ export function addUserApi(userName: string) {
             mockHobbies = { [newID]: [], ...mockHobbies }
             resolve({
                 data: mockUsers,
+            })
+        }, 500)
+    )
+}
+
+export function addHobbyAPI(userID: string, hobby: Hobby) {
+    return new Promise<{ data: Hobby[] }>((resolve) =>
+        setTimeout(() => {
+            mockHobbies = {
+                ...mockHobbies,
+                [userID]: [...mockHobbies[userID], hobby],
+            }
+            resolve({
+                data: mockHobbies[userID],
             })
         }, 500)
     )
