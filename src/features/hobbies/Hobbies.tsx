@@ -6,6 +6,7 @@ import {
     selectHobbies,
     selectUsers,
     fetchHobbies,
+    addNewUser,
 } from './hobbiesSlice'
 import styles from './Hobbies.module.scss'
 import { Usertable } from '../../components/UserTable/UserTable'
@@ -23,9 +24,7 @@ export function Hobbies({
         dispatch(fetchUsers())
     }, [dispatch])
 
-    if (users.status !== 'idle') {
-        return null
-    }
+    console.log('🚀 ~ file: Hobbies.tsx ~ line 20 ~ users', users)
 
     return (
         <div className={styles.hobbiesTable}>
@@ -34,7 +33,12 @@ export function Hobbies({
             </header>
             <div className={styles.elementWrapper}>
                 <div className={styles.leftComponent}>
-                    <Usertable users={users.users} addUser={() => {}} />
+                    <Usertable
+                        users={users.users}
+                        addUser={(userName: string) =>
+                            dispatch(addNewUser(userName))
+                        }
+                    />
                 </div>
                 <div className={styles.rightComponent}>
                     <Hobbiestable
