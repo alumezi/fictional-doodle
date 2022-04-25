@@ -1,0 +1,33 @@
+@import '../../variables.scss';
+
+.hobbiesTable {
+    border: 1px solid $border-color;
+}
+
+.header {
+    height: 5rem;
+    border-bottom: 1px solid $border-color;
+    text-align: left;
+    vertical-align: middle;
+    padding: 1rem;
+}
+
+.elementWrapper {
+    display: flex;
+    min-height: 10rem;
+
+    .leftComponent {
+        width: 30%;
+        margin-right: 1rem;
+        resize: horizontal;
+        overflow: auto;
+        border: 1px solid $border-color;
+    }
+
+    .rightComponent {
+        width: 69%;
+        resize: horizontal;
+        overflow: auto;
+        border: 1px solid $border-color;
+    }
+}
