@@ -23,7 +23,7 @@ export function Hobbiestable({
     }
 
     return (
-        <table className={styles.hobbiesTable}>
+        <table className={styles.hobbiesTable} width="100%">
             <thead>
                 <tr>
                     <td>
@@ -61,7 +61,7 @@ export function Hobbiestable({
             </thead>
             <tbody>
                 {hobbies.map((hobby) => (
-                    <tr key={hobby.id} className={styles.oneHobby}>
+                    <tr key={hobby.id}>
                         <td>Passion: {hobby.passion}</td>
                         <td>{hobby.hobby}</td>
                         <td>Since: {hobby.year}</td>
