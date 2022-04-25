@@ -1,7 +1,7 @@
 import { Hobby, User } from '../interfaces'
 
 let mockUsers = [{ id: '123ewg43d3d', name: 'Arbnor Lumezi' }]
-const mockHobbies: { [key: string]: Hobby[] } = {
+let mockHobbies: { [key: string]: Hobby[] } = {
     '123ewg43d3d': [
         {
             id: '123sd3j48j',
@@ -27,10 +27,9 @@ export function fetchAllUsers() {
 export function addUserApi(userName: string) {
     return new Promise<{ data: User[] }>((resolve) =>
         setTimeout(() => {
-            mockUsers = [
-                { id: Math.random().toString(), name: userName },
-                ...mockUsers,
-            ]
+            const newID = Math.random().toString()
+            mockUsers = [{ id: newID, name: userName }, ...mockUsers]
+            mockHobbies = { [newID]: [], ...mockHobbies }
             resolve({
                 data: mockUsers,
             })

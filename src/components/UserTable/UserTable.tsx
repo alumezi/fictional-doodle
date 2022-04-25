@@ -3,11 +3,13 @@ import { User } from '../../interfaces'
 import styles from './HobbiesTable.module.scss'
 
 export function Usertable({
-    addUser,
     users,
+    addUser,
+    onSelect,
 }: PropsWithChildren<{
-    addUser: Function
     users: User[]
+    addUser: (userName: string) => void
+    onSelect: (userID: string) => void
 }>) {
     const [newUser, setNewUser] = useState('')
 
@@ -33,7 +35,9 @@ export function Usertable({
             </div>
             <div>
                 {users.map((user) => (
-                    <div>{user.name}</div>
+                    <div key={user.id} onClick={() => onSelect(user.id)}>
+                        {user.name}
+                    </div>
                 ))}
             </div>
         </div>

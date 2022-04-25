@@ -30,7 +30,9 @@ export function Hobbiestable({
                     onChange={(e) => setPassionLevel(e.target.value)}
                 >
                     {passionLevels.map((item: Passion) => (
-                        <option value={item.value}>{item.name}</option>
+                        <option value={item.value} key={item.value}>
+                            {item.name}
+                        </option>
                     ))}
                 </select>
                 <input
@@ -49,7 +51,7 @@ export function Hobbiestable({
             </div>
             <div>
                 {hobbies.map((hobby) => (
-                    <div>
+                    <div key={hobby.id}>
                         <div>Passion: {hobby.passion}</div>
                         <div>{hobby.hobby}</div>
                         <div>Since: {hobby.year}</div>

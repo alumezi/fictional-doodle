@@ -24,7 +24,9 @@ export function Hobbies({
         dispatch(fetchUsers())
     }, [dispatch])
 
-    console.log('🚀 ~ file: Hobbies.tsx ~ line 20 ~ users', users)
+    const handleSelect = (userID: string) => {
+        dispatch(fetchHobbies(userID))
+    }
 
     return (
         <div className={styles.hobbiesTable}>
@@ -38,6 +40,7 @@ export function Hobbies({
                         addUser={(userName: string) =>
                             dispatch(addNewUser(userName))
                         }
+                        onSelect={handleSelect}
                     />
                 </div>
                 <div className={styles.rightComponent}>
