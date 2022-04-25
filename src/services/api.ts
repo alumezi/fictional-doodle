@@ -51,6 +51,19 @@ export function addHobbyAPI(userID: string, hobby: Hobby) {
     )
 }
 
+export function deleteHobbyAPI(userID: string, hobbyID: string) {
+    return new Promise<{ data: Hobby[] }>((resolve) =>
+        setTimeout(() => {
+            mockHobbies[userID] = mockHobbies[userID].filter(
+                (item) => item.id !== hobbyID
+            )
+            resolve({
+                data: mockHobbies[userID],
+            })
+        }, 500)
+    )
+}
+
 export function fetchUserHobbies(userID: string) {
     return new Promise<{ data: Hobby[] }>((resolve) =>
         setTimeout(

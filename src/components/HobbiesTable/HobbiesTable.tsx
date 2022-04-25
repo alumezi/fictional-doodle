@@ -6,8 +6,10 @@ export function Hobbiestable({
     addHobby,
     hobbies,
     passionLevels,
+    deleteHobby,
 }: PropsWithChildren<{
     addHobby: (item: Hobby) => void
+    deleteHobby: (hobbyID: string) => void
     hobbies: Hobby[]
     passionLevels: Passion[]
 }>) {
@@ -66,7 +68,9 @@ export function Hobbiestable({
                         <td>{hobby.hobby}</td>
                         <td>Since: {hobby.year}</td>
                         <td>
-                            <button onClick={() => {}}>❌</button>
+                            <button onClick={() => deleteHobby(hobby.id)}>
+                                ❌
+                            </button>
                         </td>
                     </tr>
                 ))}

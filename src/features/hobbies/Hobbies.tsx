@@ -8,6 +8,7 @@ import {
     fetchHobbies,
     addNewUser,
     addHobbyThunk,
+    deleteHobbyThunk,
 } from './hobbiesSlice'
 import styles from './Hobbies.module.scss'
 import { Usertable } from '../../components/UserTable/UserTable'
@@ -56,6 +57,14 @@ export function Hobbies({
                                     addHobbyThunk({
                                         userID: selectedUser,
                                         hobby,
+                                    })
+                                )
+                            }
+                            deleteHobby={(hobbyID: string) =>
+                                dispatch(
+                                    deleteHobbyThunk({
+                                        userID: selectedUser,
+                                        hobbyID,
                                     })
                                 )
                             }

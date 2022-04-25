@@ -4,6 +4,7 @@ import { Hobby, User } from '../../interfaces'
 import {
     addHobbyAPI,
     addUserAPI,
+    deleteHobbyAPI,
     fetchAllUsers,
     fetchUserHobbies,
 } from '../../services/api'
@@ -57,6 +58,14 @@ export const addHobbyThunk = createAsyncThunk(
     }
 )
 
+export const deleteHobbyThunk = createAsyncThunk(
+    'hobbies/deleteHobbyThunk',
+    async ({ userID, hobbyID }: { userID: string; hobbyID: string }) => {
+        const response = await deleteHobbyAPI(userID, hobbyID)
+        return response.data
+    }
+)
+
 export const userSlice = createSlice({
     name: 'users',
     initialState: initialUserState,
@@ -97,6 +106,13 @@ export const hobbySlice = createSlice({
                 state.status = 'loading'
             })
             .addCase(addHobbyThunk.fulfilled, (state, action) => {
+                state.status = 'idle'
+                state.hobbies = action.payload
+            })
+            .addCase(deleteHobbyThunk.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(deleteHobbyThunk.fulfilled, (state, action) => {
                 state.status = 'idle'
                 state.hobbies = action.payload
             })
