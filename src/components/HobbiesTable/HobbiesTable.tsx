@@ -18,6 +18,18 @@ export function Hobbiestable({
     const [year, setYear] = useState('')
 
     const handleAddHobby = () => {
+        if (!passion) {
+            return alert('Please select a passion')
+        }
+
+        if (!hobby) {
+            return alert('Please add hobby')
+        }
+
+        if (!year) {
+            return alert('Please add year')
+        }
+
         addHobby({ id: '', passion, hobby, year })
         setPassionLevel('')
         setHobby('')
@@ -33,6 +45,7 @@ export function Hobbiestable({
                             value={passion}
                             onChange={(e) => setPassionLevel(e.target.value)}
                         >
+                            <option value=""></option>
                             {passionLevels.map((item: Passion) => (
                                 <option value={item.value} key={item.value}>
                                     {item.name}
